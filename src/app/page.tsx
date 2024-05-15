@@ -1,9 +1,10 @@
-import { WeatherContent } from "./components/WeatherContent";
+import { WeatherContainer } from "./components/WeatherContainer";
+
 
 export default function Home() {
   return (
     <main className="h-full w-full">
-      <WeatherContent />
+      <WeatherContainer />
     </main>
   );
 }

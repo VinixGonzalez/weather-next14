@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { CityForm } from "./CityForm";
 import { Weather } from "./Weather";
 import { useQuery } from "@tanstack/react-query";
@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 import { WeatherResponseData } from "../../../types";
 import { conditionToGradient } from "../utils/gradients";
 
-export const WeatherContent = () => {
+const WeatherComponent = () => {
   const searchParams = useSearchParams();
   const city = searchParams.get("city");
   const lat = searchParams.get("lat");
@@ -48,5 +48,13 @@ export const WeatherContent = () => {
       <CityForm />
       <Weather current={data.current} location={data.location} />
     </div>
+  );
+};
+
+export const WeatherContainer = () => {
+  return (
+    <Suspense>
+      <WeatherComponent />
+    </Suspense>
   );
 };
